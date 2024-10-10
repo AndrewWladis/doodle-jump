@@ -1,6 +1,17 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
+  arcadeSelectionScreen: {
+    flex: 1,
+    backgroundColor: '#141414'
+  },
+  arcadeSelectionScreenHeader: {
+    fontSize: 22,
+    fontWeight: '700',
+    color: '#f0f0f0',
+    marginTop: '20%',
+    textAlign: 'center'
+  },
   doodleJumpBar: {
     width: 80,
     height: 10,
@@ -31,10 +42,23 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#76caf5'
   },
-  homeScreen: {
-    flex: 1,
-    backgroundColor: '#76caf5'
-  }
+  gameDescription: {
+    fontSize: 20,
+    color: '#f0f0f0',
+    marginTop: 2
+  },
+  gameItem: {
+    margin: 10,
+    width: '95%',
+    alignSelf: 'center',
+    padding: 15,
+    borderRadius: 5
+  },
+  gameTitle: {
+    fontSize: 17,
+    fontWeight: '700',
+    color: '#f0f0f0'
+  },
 });
 
 export default styles;

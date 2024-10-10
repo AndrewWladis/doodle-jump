@@ -1,9 +1,9 @@
-import { View, Animated, Text, Dimensions, Image } from 'react-native';
+import { View, Animated, Text, Dimensions, Image, TouchableOpacity } from 'react-native';
 import styles from './styles'
 import { PanGestureHandler, State, GestureHandlerRootView } from 'react-native-gesture-handler';
 import { useState, useEffect, useRef } from 'react';
 
-export default function DoodleJump() {
+export default function DoodleJump({ setMenuScreen }) {
     const [isGameOver, setIsGameOver] = useState(false);
     const [screenWidth, setScreenWidth] = useState(Dimensions.get('window').width);
     const [screenHeight, setScreenHeight] = useState(Dimensions.get('window').height);
@@ -11,10 +11,10 @@ export default function DoodleJump() {
     const [playerRotation, setPlayerRotation] = useState(0);
     const [barPositions, setBarPositions] = useState([[0, (.9 * (screenHeight - 90))], [0, (.7 * (screenHeight - 90))], [0, (.5 * (screenHeight - 90))], [0, (.3 * (screenHeight - 90))], [0, (.1 * (screenHeight - 90))]]);
     const [playerPosition, setPlayerPosition] = useState([(screenWidth / 2) - 25, (.6 * (screenHeight - 90))]);
-    const backgroundColor = useRef(new Animated.Value(0)).current;
     const [playerJumpCounter, setPlayerJumpCounter] = useState(0);
-    const translateX = useRef(new Animated.Value(0)).current;
     const [isMovingRight, setIsMovingRight] = useState(false);
+    const backgroundColor = useRef(new Animated.Value(0)).current;
+    const translateX = useRef(new Animated.Value(0)).current;
     const moveIntervalRef = useRef(null);
 
     function startMovingRight() {
@@ -40,44 +40,44 @@ export default function DoodleJump() {
     }
 
     function startMovingLeft() {
-    if (!isMovingRight) {
-        setIsMovingRight(true);
-        let steps = 0;
-        const totalSteps = 40;
-        const stepDistance = -(screenWidth / 2); // Total distance to move, negative for left
+        if (!isMovingRight) {
+            setIsMovingRight(true);
+            let steps = 0;
+            const totalSteps = 40;
+            const stepDistance = -(screenWidth / 2); // Total distance to move, negative for left
 
-        moveIntervalRef.current = setInterval(() => {
-            if (steps < totalSteps) {
-                setPlayerPosition(prevPosition => [
-                    Math.max(0, prevPosition[0] + (stepDistance / totalSteps)),
-                    prevPosition[1]
-                ]);
-                steps++;
-            } else {
-                clearInterval(moveIntervalRef.current);
-                setIsMovingRight(false);
-            }
-        }, 10); // 25ms * 10 steps = 250ms total
+            moveIntervalRef.current = setInterval(() => {
+                if (steps < totalSteps) {
+                    setPlayerPosition(prevPosition => [
+                        Math.max(0, prevPosition[0] + (stepDistance / totalSteps)),
+                        prevPosition[1]
+                    ]);
+                    steps++;
+                } else {
+                    clearInterval(moveIntervalRef.current);
+                    setIsMovingRight(false);
+                }
+            }, 10); // 25ms * 10 steps = 250ms total
+        }
     }
-}
 
     const onGestureEvent = Animated.event(
-      [{ nativeEvent: { translationX: translateX } }],
-      { useNativeDriver: false }
+        [{ nativeEvent: { translationX: translateX } }],
+        { useNativeDriver: false }
     );
   
     const onHandlerStateChange = ({ nativeEvent }) => {
-      if (nativeEvent.state === State.END) {
-        // Detect the swipe direction by checking the translationX value
-        if (nativeEvent.translationX > 50) {
-          startMovingRight();
-        } else if (nativeEvent.translationX < -50) {
-          startMovingLeft();
-        }
+        if (nativeEvent.state === State.END) {
+            // Detect the swipe direction by checking the translationX value
+            if (nativeEvent.translationX > 50) {
+                startMovingRight();
+            } else if (nativeEvent.translationX < -50) {
+                startMovingLeft();
+            }
   
-        // Reset the translationX after the gesture ends
-        translateX.setValue(0);
-      }
+            // Reset the translationX after the gesture ends
+            translateX.setValue(0);
+        }
     };
 
     function jump() {
@@ -125,7 +125,7 @@ export default function DoodleJump() {
 
     useEffect(() => {
         const onChange = ({ window }) => {
-          setScreenWidth(window.width);
+            setScreenWidth(window.width);
         };
     
         const subscription = Dimensions.addEventListener('change', onChange);
@@ -224,7 +224,7 @@ export default function DoodleJump() {
 
     return (
         <GestureHandlerRootView>
-<PanGestureHandler
+            <PanGestureHandler
             onGestureEvent={onGestureEvent}
             onHandlerStateChange={onHandlerStateChange}
         >
@@ -261,8 +261,8 @@ export default function DoodleJump() {
                     marginTop: barPositions[4][1]
                 }]}></View>
             </View>
-        </Animated.View>
-    </PanGestureHandler>
+                </Animated.View>
+            </PanGestureHandler>
         </GestureHandlerRootView>
-    )
+    );
 }
