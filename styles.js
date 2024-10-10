@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   doodleJumpBar: {
-    width: 100,
+    width: 70,
     height: 10,
     backgroundColor: 'white',
     position: 'absolute',
@@ -24,8 +24,9 @@ const styles = StyleSheet.create({
     borderRadius: 5
   },
   doodleJumpScore: {
-    fontSize: 26,
-    fontWeight: '700'
+    fontSize: 30,
+    fontWeight: '700',
+    color: '#f0f0f0'
   },
   doodleJumpScreen: {
     flex: 1,
