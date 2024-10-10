@@ -1,4 +1,4 @@
-import { View, Animated, Text, Dimensions } from 'react-native';
+import { View, Animated, Text, Dimensions, Image } from 'react-native';
 import styles from './styles'
 import { PanGestureHandler, State, GestureHandlerRootView } from 'react-native-gesture-handler';
 import { useState, useEffect, useRef } from 'react';
@@ -8,6 +8,7 @@ export default function DoodleJump() {
     const [screenWidth, setScreenWidth] = useState(Dimensions.get('window').width);
     const [screenHeight, setScreenHeight] = useState(Dimensions.get('window').height);
     const [score, setScore] = useState(0);
+    const [playerRotation, setPlayerRotation] = useState(0);
     const [barPositions, setBarPositions] = useState([[0, (.9 * (screenHeight - 90))], [0, (.7 * (screenHeight - 90))], [0, (.5 * (screenHeight - 90))], [0, (.3 * (screenHeight - 90))], [0, (.1 * (screenHeight - 90))]]);
     const [playerPosition, setPlayerPosition] = useState([(screenWidth / 2) - 25, (.6 * (screenHeight - 90))]);
     const backgroundColor = useRef(new Animated.Value(0)).current;
@@ -20,8 +21,8 @@ export default function DoodleJump() {
         if (!isMovingRight) {
             setIsMovingRight(true);
             let steps = 0;
-            const totalSteps = 40; // 10 steps over 250ms
-            const stepDistance = 100; // Total distance to move
+            const totalSteps = 40;
+            const stepDistance = (screenWidth / 2); // Total distance to move
 
             moveIntervalRef.current = setInterval(() => {
                 if (steps < totalSteps) {
@@ -42,8 +43,8 @@ export default function DoodleJump() {
     if (!isMovingRight) {
         setIsMovingRight(true);
         let steps = 0;
-        const totalSteps = 40; // 10 steps over 250ms
-        const stepDistance = -100; // Total distance to move, negative for left
+        const totalSteps = 40;
+        const stepDistance = -(screenWidth / 2); // Total distance to move, negative for left
 
         moveIntervalRef.current = setInterval(() => {
             if (steps < totalSteps) {
@@ -80,7 +81,10 @@ export default function DoodleJump() {
     };
 
     function jump() {
-        setPlayerJumpCounter(prevCount => prevCount + 16);
+        if (playerJumpCounter < 17) {
+            setPlayerJumpCounter(prevCount => prevCount + 16);
+            setPlayerRotation(Math.floor(Math.random() * 45) - 23);
+        }
     }
 
     // Interpolate backgroundColor from 0 to 1 to colors
@@ -170,9 +174,7 @@ export default function DoodleJump() {
                 playerPosition[1] + 50 >= barY &&
                 playerPosition[1] + 50 <= barY + 10
             ) {
-                if (playerJumpCounter < 20) {
-                    jump();
-                }
+                jump();
             }
         });
     }, [playerPosition]);
@@ -233,8 +235,11 @@ export default function DoodleJump() {
             <View style={styles.doodleJumpGame}>
                 <View style={[styles.doodleJumpPlayer, {
                     marginLeft: playerPosition[0],
-                    marginTop: playerPosition[1]
-                }]}></View>
+                    marginTop: playerPosition[1],
+                    transform: [{ rotate: `${playerRotation}deg` }]
+                }]}>
+                    <Image source={require('./assets/burger.png')} />
+                </View>
                 <View style={[styles.doodleJumpBar, {
                     marginLeft: barPositions[0][0],
                     marginTop: barPositions[0][1]
