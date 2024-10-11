@@ -1,4 +1,4 @@
-import { Text, View, TouchableOpacity } from 'react-native';
+import { Text, View, TouchableOpacity, Animated } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { StatusBar } from 'expo-status-bar';
 import { useState, useEffect } from 'react';
@@ -13,6 +13,36 @@ export default function App() {
 
   useFonts({
     'Pixel': require('./assets/DePixelHalbfett.ttf'),
+  });
+
+  const [animation] = useState(new Animated.Value(0));
+
+  useEffect(() => {
+    Animated.loop(
+      Animated.sequence([
+        Animated.timing(animation, {
+          toValue: 1,
+          duration: 1000,
+          useNativeDriver: false,
+        }),
+        Animated.timing(animation, {
+          toValue: 0,
+          duration: 1000,
+          useNativeDriver: false,
+        }),
+      ])
+    ).start();
+  }, []);
+
+  const marginBottom = animation.interpolate({
+    inputRange: [0, 1],
+    outputRange: [20, 0],
+  });
+
+
+  const marginTop = animation.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0, 20],
   });
 
   useEffect(() => {
@@ -51,7 +81,14 @@ export default function App() {
     } else {
       return (
         <View style={[styles.doodleJumpScreen, styles.homeScreen]}>
-          <Text style={[styles.homeScreenTitle, { fontFamily: 'Pixel' }]}>Burger Jump</Text>
+          <Animated.Text 
+            style={[
+              styles.homeScreenTitle, 
+              { fontFamily: 'Pixel', marginBottom, marginTop }
+            ]}
+          >
+            {`Get\nHigh`}
+          </Animated.Text>
           <TouchableOpacity style={styles.startButton} onPress={() => setScreen('BurgerJump')}>
             <Text style={styles.startButtonText}>PLAY</Text>
           </TouchableOpacity>

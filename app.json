@@ -1,16 +1,17 @@
 {
   "expo": {
-    "name": "arcade",
-    "slug": "arcade",
+    "name": "Get High",
+    "slug": "get-high",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/burger.png",
     "userInterfaceStyle": "light",
     "splash": {
       "backgroundColor": "#76caf5"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.andywladis.burgerjump"
     },
     "android": {
       "adaptiveIcon": {
@@ -22,6 +23,11 @@
     },
     "plugins": [
       "expo-font"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "88d677a1-013d-4773-a077-b082f475b7d1"
+      }
+    }
   }
 }

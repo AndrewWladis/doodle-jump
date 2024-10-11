@@ -95,9 +95,10 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   homeScreenTitle: {
-    fontSize: 25,
+    fontSize: 70,
     fontWeight: '700',
-    color: '#f0f0f0'
+    color: '#f0f0f0',
+    textAlign: 'center'
   },
   loadingBar: {
     height: 15,
