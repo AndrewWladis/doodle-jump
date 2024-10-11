@@ -3,7 +3,7 @@ import styles from './styles'
 import { PanGestureHandler, State, GestureHandlerRootView } from 'react-native-gesture-handler';
 import { useState, useEffect, useRef } from 'react';
 
-export default function DoodleJump({ setMenuScreen }) {
+export default function DoodleJump({ setMenuScreen, highScore, setHighScore }) {
     const [isGameOver, setIsGameOver] = useState(false);
     const [screenWidth, setScreenWidth] = useState(Dimensions.get('window').width);
     const [screenHeight, setScreenHeight] = useState(Dimensions.get('window').height);
@@ -164,6 +164,9 @@ export default function DoodleJump({ setMenuScreen }) {
 
     useEffect(() => {
         if (playerPosition[1] >= (screenHeight * .88)) {
+            if (score > highScore) {
+                setHighScore(score);
+            }
             setIsGameOver(true);
         }
         // Check for collision with bars
@@ -231,7 +234,9 @@ export default function DoodleJump({ setMenuScreen }) {
         >
             <View style={styles.gameOverOverlay}>
                 <Text style={styles.gameOverText}>GAME OVER</Text>
+                {score >= highScore && <Text style={styles.newHighScoreText}>NEW HIGH SCORE!</Text>}
                 <Text style={styles.finalScoreText}>FINAL SCORE: {score}</Text>
+                <Text style={styles.finalScoreText}>HIGH SCORE: {highScore}</Text>
                 <TouchableOpacity
                     style={styles.restartButton}
                     onPress={() => {

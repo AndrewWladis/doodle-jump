@@ -1,16 +1,48 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-  arcadeSelectionScreen: {
-    flex: 1,
-    backgroundColor: '#141414'
+  battlePassItem: {
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf: 'center',
+    borderBottomWidth: 1,
+    borderBottomColor: '#f0f0f0', 
+    marginVertical: 10
   },
-  arcadeSelectionScreenHeader: {
+  battlePassItemTitle: {
     fontSize: 22,
     fontWeight: '700',
     color: '#f0f0f0',
-    marginTop: '20%',
+    marginVertical: 5,
     textAlign: 'center'
+  },
+  battlePassList: {
+    width: '80%',
+    maxHeight: '60%',
+    alignSelf: 'center'
+  },
+  battlePassScreen: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%'
+  },
+  battlePassSeason: {
+    fontSize: 22,
+    fontWeight: '700',
+    color: '#f0f0f0'
+  },
+  battlePassSubtitle: {
+    fontSize: 18,
+    color: '#f0f0f0',
+    marginVertical: 5,
+    fontWeight: '600'
+  },
+  battlePassTitle: {
+    fontSize: 25,
+    fontWeight: '700',
+    color: '#f0f0f0',
+    marginTop: 15
   },
   doodleJumpBar: {
     width: 80,
@@ -45,35 +77,7 @@ const styles = StyleSheet.create({
   finalScoreText: {
     fontSize: 25,
     color: '#f0f0f0',
-    marginVertical: 20
-  },
-  gameButton: {
-    backgroundColor: '#141414',
-    width: '40%',
-    alignSelf: 'center',
-    padding: 5,
-    borderRadius: 15,
-    marginTop: 10,
-    borderWidth: 2,
-    borderColor: 'white'
-  },
-  gameButtonText: {
-    fontSize: 20,
-    fontWeight: '700',
-    color: 'white',
-    textAlign: 'center'
-  },
-  gameDescription: {
-    fontSize: 20,
-    color: '#f0f0f0',
-    marginTop: 2
-  },
-  gameItem: {
-    margin: 10,
-    width: '95%',
-    alignSelf: 'center',
-    padding: 15,
-    borderRadius: 5
+    marginVertical: 5
   },
   gameOverOverlay: {
     flex: 1,
@@ -86,10 +90,34 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: '#f0f0f0'
   },
-  gameTitle: {
-    fontSize: 17,
+  homeScreen: {
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  homeScreenTitle: {
+    fontSize: 25,
     fontWeight: '700',
     color: '#f0f0f0'
+  },
+  loadingBar: {
+    height: 15,
+    backgroundColor: 'white',
+    maxWidth: '100%'
+  },
+  loadingBarContainer: {
+    width: '80%',
+    alignItems: 'flex-start',
+    marginBottom: 10,
+    overflow: 'hidden',
+    borderRadius: 5,
+    borderColor: 'white',
+    borderWidth: 2
+  },
+  newHighScoreText: {
+    fontSize: 27,
+    color: '#f0f0f0',
+    marginVertical: 5,
+    fontWeight: '800'
   },
   restartButton: {
     backgroundColor: '#52c0f7',
@@ -101,6 +129,20 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     padding: 10,
     color: 'white'
+  },
+  startButton: {
+    borderRadius: 15,
+    marginTop: 20,
+    backgroundColor: 'white',
+    width: '50%',
+    alignItems: 'center'
+  },
+  startButtonText: {
+    fontSize: 22,
+    fontWeight: '700',
+    padding: 10,
+    color: '#76caf5',
+    textAlign: 'center'
   },
   tetrisBoard: {
     aspectRatio: 1,
