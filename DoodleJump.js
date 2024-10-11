@@ -1,4 +1,4 @@
-import { View, Animated, Text, Dimensions, Image, TouchableOpacity } from 'react-native';
+import { View, Animated, Text, Dimensions, Image, TouchableOpacity, Modal } from 'react-native';
 import styles from './styles'
 import { PanGestureHandler, State, GestureHandlerRootView } from 'react-native-gesture-handler';
 import { useState, useEffect, useRef } from 'react';
@@ -81,8 +81,8 @@ export default function DoodleJump({ setMenuScreen }) {
     };
 
     function jump() {
-        if (playerJumpCounter < 17) {
-            setPlayerJumpCounter(prevCount => prevCount + 16);
+        if (playerJumpCounter < 20) {
+            setPlayerJumpCounter(prevCount => prevCount + 18);
             setPlayerRotation(Math.floor(Math.random() * 45) - 23);
         }
     }
@@ -223,11 +223,46 @@ export default function DoodleJump({ setMenuScreen }) {
     }, []);
 
     return (
+        <>
+        <Modal
+            transparent={true}
+            visible={isGameOver}
+            animationType="fade"
+        >
+            <View style={styles.gameOverOverlay}>
+                <Text style={styles.gameOverText}>GAME OVER</Text>
+                <Text style={styles.finalScoreText}>FINAL SCORE: {score}</Text>
+                <TouchableOpacity
+                    style={styles.restartButton}
+                    onPress={() => {
+                        setIsGameOver(false);
+                        setScore(0);
+                        setPlayerPosition([screenWidth / 2 - 25, screenHeight * 0.7]);
+                        setBarPositions([
+                            [Math.floor(Math.random() * (screenWidth - 90)) + 10, screenHeight * 0.8],
+                            [Math.floor(Math.random() * (screenWidth - 90)) + 10, screenHeight * 0.6],
+                            [Math.floor(Math.random() * (screenWidth - 90)) + 10, screenHeight * 0.4],
+                            [Math.floor(Math.random() * (screenWidth - 90)) + 10, screenHeight * 0.2],
+                            [Math.floor(Math.random() * (screenWidth - 90)) + 10, 0]
+                        ]);
+                    }}
+                >
+                    <Text style={styles.restartButtonText}>RESTART</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    onPress={setMenuScreen}
+                    style={styles.restartButton}
+                >
+                    <Text style={styles.restartButtonText}>BACK TO MENU</Text>
+                </TouchableOpacity>
+            </View>
+        </Modal>
         <GestureHandlerRootView>
             <PanGestureHandler
             onGestureEvent={onGestureEvent}
             onHandlerStateChange={onHandlerStateChange}
         >
+            
             <Animated.View style={[styles.doodleJumpScreen, { backgroundColor: backgroundColorInterpolation }]}>
                 <View style={styles.doodleJumpHeader}>
                     <Text style={styles.doodleJumpScore}>SCORE: {score}</Text>
@@ -264,5 +299,6 @@ export default function DoodleJump({ setMenuScreen }) {
                 </Animated.View>
             </PanGestureHandler>
         </GestureHandlerRootView>
+        </>
     );
 }
