@@ -1,8 +1,8 @@
 {
   "expo": {
     "name": "Get High",
-    "slug": "get-high",
-    "version": "1.0.0",
+    "slug": "arcade",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/burger.png",
     "userInterfaceStyle": "light",

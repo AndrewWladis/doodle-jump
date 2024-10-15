@@ -82,7 +82,7 @@ export default function DoodleJump({ setMenuScreen, highScore, setHighScore }) {
 
     function jump() {
         if (playerJumpCounter < 20) {
-            setPlayerJumpCounter(prevCount => prevCount + 18);
+            setPlayerJumpCounter(prevCount => prevCount + 20);
             setPlayerRotation(Math.floor(Math.random() * 45) - 23);
         }
     }

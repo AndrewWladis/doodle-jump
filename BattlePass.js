@@ -4,17 +4,15 @@ import styles from './styles'
 
 export default function BattlePass({ setMenuScreen, highScore }) {
     const levels = [
-        { id: 1, title: 'New Noob', highScoreRequired: 0 },
-        { id: 2, title: 'Beginner Baker', highScoreRequired: 10 },
-        { id: 3, title: 'Advanced Artist', highScoreRequired: 20 },
-        { id: 4, title: 'Pro Chef', highScoreRequired: 30 },
-        { id: 5, title: 'Master Chef', highScoreRequired: 45 },
-        { id: 6, title: 'The Basher', highScoreRequired: 50 },
-        { id: 7, title: 'The "Rick" Friend', highScoreRequired: 55 },
-        { id: 8, title: 'Hacker', highScoreRequired: 60 },
-        { id: 9, title: 'Herobrine', highScoreRequired: 65 },
-        { id: 10, title: 'Dr. Micheal Morbius', highScoreRequired: 70 },
-        { id: 11, title: 'World Class Chef', highScoreRequired: 100 },
+        { id: 1, title: 'New Noob', highScoreRequired: 5 },
+        { id: 2, title: 'Beginner', highScoreRequired: 10 },
+        { id: 3, title: 'Advanced Artist', highScoreRequired: 15 },
+        { id: 4, title: 'World Class Warrior', highScoreRequired: 25 },
+        { id: 5, title: 'The Basher', highScoreRequired: 30 },
+        { id: 6, title: 'The "Rick" Friend', highScoreRequired: 35 },
+        { id: 7, title: 'Hacker', highScoreRequired: 50 },
+        { id: 8, title: 'Herobrine', highScoreRequired: 55 },
+        { id: 9, title: 'Dr. Micheal Morbius', highScoreRequired: 60 },
     ]
 
     const returnLoadingBar = (highScoreRequired) => {
