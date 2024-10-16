@@ -21,13 +21,16 @@ export default function DoodleJump({ setMenuScreen, highScore, setHighScore }) {
         if (!isMovingRight) {
             setIsMovingRight(true);
             let steps = 0;
-            const totalSteps = 40;
+            const totalSteps = 70;
             const stepDistance = (screenWidth / 2); // Total distance to move
 
             moveIntervalRef.current = setInterval(() => {
                 if (steps < totalSteps) {
+                    const remainingSteps = totalSteps - steps;
+                    const currentStepDistance = (stepDistance / totalSteps) * (remainingSteps / totalSteps) * 1.5;
+
                     setPlayerPosition(prevPosition => [
-                        prevPosition[0] + (stepDistance / totalSteps),
+                        prevPosition[0] + currentStepDistance,
                         prevPosition[1]
                     ]);
                     steps++;
@@ -43,13 +46,16 @@ export default function DoodleJump({ setMenuScreen, highScore, setHighScore }) {
         if (!isMovingRight) {
             setIsMovingRight(true);
             let steps = 0;
-            const totalSteps = 40;
+            const totalSteps = 70;
             const stepDistance = -(screenWidth / 2); // Total distance to move, negative for left
 
             moveIntervalRef.current = setInterval(() => {
                 if (steps < totalSteps) {
+                    const remainingSteps = totalSteps - steps;
+                    const currentStepDistance = (stepDistance / totalSteps) * (remainingSteps / totalSteps) * 1.5;
+                    
                     setPlayerPosition(prevPosition => [
-                        Math.max(0, prevPosition[0] + (stepDistance / totalSteps)),
+                        Math.max(0, prevPosition[0] + currentStepDistance),
                         prevPosition[1]
                     ]);
                     steps++;

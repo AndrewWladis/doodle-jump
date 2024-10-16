@@ -1,7 +1,7 @@
 import { Text, View, TouchableOpacity, Animated } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { StatusBar } from 'expo-status-bar';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useFonts } from 'expo-font';
 import DoodleJump from './DoodleJump';
 import BattlePass from './BattlePass';
@@ -10,22 +10,21 @@ import styles from './styles';
 export default function App() {
   const [screen, setScreen] = useState('Home');
   const [highScore, setHighScore] = useState(0);
+  const animationRef = useRef(new Animated.Value(0));
 
   useFonts({
     'Pixel': require('./assets/DePixelHalbfett.ttf'),
   });
 
-  const [animation] = useState(new Animated.Value(0));
-
   useEffect(() => {
     Animated.loop(
       Animated.sequence([
-        Animated.timing(animation, {
+        Animated.timing(animationRef.current, {
           toValue: 1,
           duration: 1000,
           useNativeDriver: false,
         }),
-        Animated.timing(animation, {
+        Animated.timing(animationRef.current, {
           toValue: 0,
           duration: 1000,
           useNativeDriver: false,
@@ -34,13 +33,12 @@ export default function App() {
     ).start();
   }, []);
 
-  const marginBottom = animation.interpolate({
+  const marginBottom = animationRef.current.interpolate({
     inputRange: [0, 1],
     outputRange: [20, 0],
   });
 
-
-  const marginTop = animation.interpolate({
+  const marginTop = animationRef.current.interpolate({
     inputRange: [0, 1],
     outputRange: [0, 20],
   });
