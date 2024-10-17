@@ -1,9 +1,38 @@
 // Season 1: Beginnings
 const levelsSeason1 = [
-    { id: 1, title: 'New Noob', highScoreRequired: 5 },
-    { id: 2, title: 'Basic Beginner', highScoreRequired: 10 },
-    { id: 3, title: 'Advanced Artist', highScoreRequired: 25 },
-    { id: 4, title: 'Hacker Hero', highScoreRequired: 50 },
+    { 
+        id: 1, 
+        title: 'New Noob', 
+        highScoreRequired: 5,
+        unlockableItems: [ 
+            {
+                name: "chickensandwich",
+                type: "skin"
+            },
+            {
+                name: "thinoutline",
+                type: "bar"
+            },
+        ]
+    },
+    { 
+        id: 2, 
+        title: 'Basic Beginner', 
+        highScoreRequired: 10,
+        unlockableItems: []
+    },
+    { 
+        id: 3, 
+        title: 'Advanced Artist', 
+        highScoreRequired: 25,
+        unlockableItems: [] 
+    },
+    { 
+        id: 4, 
+        title: 'Hacker Hero', 
+        highScoreRequired: 50,
+        unlockableItems: [] 
+    },
 ]
 
 // Season 2: TikTok Rizz Party

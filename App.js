@@ -6,7 +6,7 @@ import { useFonts } from 'expo-font';
 import DoodleJump from './DoodleJump';
 import BattlePass from './BattlePass';
 import Locker from './Locker';
-import { skins } from './Skins'
+import { skins, barStyles } from './Skins'
 import styles from './styles';
 
 export default function App() {
@@ -86,9 +86,9 @@ export default function App() {
       try {
         const value = await AsyncStorage.getItem(key);
         if (value !== null) {
-          setBars(value);
+          setBars(barStyles['white']);
         } else {
-          setBars("white")
+          setBars(barStyles[value])
           await AsyncStorage.setItem(key, 'white'); // Store as string
         }
       } catch (e) {
@@ -98,6 +98,7 @@ export default function App() {
 
     getHighScore();
     getSkin();
+    getBars();
   }, []);
 
   useEffect(() => {
@@ -114,7 +115,7 @@ export default function App() {
     } else if (screen === 'BattlePass') {
       return <BattlePass setMenuScreen={() => setScreen('Home')} highScore={highScore}/>;
     } else if (screen === 'Locker') {
-      return <Locker setMenuScreen={() => setScreen('Home')} highScore={highScore} setSkin={setSkin} skin={skin} />;
+      return <Locker setMenuScreen={() => setScreen('Home')} highScore={highScore} setSkin={setSkin} skin={skin} bars={bars} />;
     } else {
       return (
         <View style={[styles.doodleJumpScreen, styles.homeScreen]}>

@@ -44,12 +44,31 @@ const styles = StyleSheet.create({
     color: '#f0f0f0',
     marginTop: 15
   },
+  battlePassUnlockableItems: {
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+    marginBottom: 10 
+  },
+  battlePassUnlockableItemsTitle: {
+    color: 'white',
+    fontWeight: '700',
+    marginBottom: 10,
+    fontSize: 15
+  },
   doodleJumpBar: {
     width: 80,
     height: 10,
     position: 'absolute',
     borderRadius: 5,
     marginHorizontal: 5
+  },
+  doodleJumpDisplayBar: {
+    width: 80,
+    height: 10,
+    borderRadius: 5,
+    marginTop: 15
   },
   doodleJumpGame: {
     flex: 1,
@@ -113,15 +132,26 @@ const styles = StyleSheet.create({
     borderColor: 'white',
     borderWidth: 2
   },
+  lockerCurrent: {
+    width: '100%',
+    borderBottomColor: 'white',
+    borderBottomWidth: 3,
+    backgroundColor: 'rgba(0, 0, 0, 0.2)',
+    padding: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+    overflow: 'hidden',
+    borderRadius: 15,
+  },
   lockerPanel: {
     width: '90%',
     height: '75%',
     borderWidth: 3,
     borderColor: 'white',
     borderRadius: 15,
-    backgroundColor: 'rgba(255, 255, 255, 0.2)',
-    alignItems: 'center',
-    justifyContent: 'center'
+    backgroundColor: 'rgba(0, 0, 0, 0.2)',
+    alignItems: 'center'
   },
   newHighScoreText: {
     fontSize: 27,

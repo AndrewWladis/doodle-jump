@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from './styles'
 import { skins } from './Skins';
 
-export default function Locker({ setMenuScreen, highScore, setSkin, Skin }) {
+export default function Locker({ setMenuScreen, highScore, setSkin, skin, bars }) {
     const [locker, setLocker] = useState([]);
 
     useEffect(() => {
@@ -32,7 +32,10 @@ export default function Locker({ setMenuScreen, highScore, setSkin, Skin }) {
   return (
     <View style={[styles.doodleJumpScreen, styles.battlePassScreen]}>
         <View style={styles.lockerPanel}>
-            
+            <View style={styles.lockerCurrent}>
+                {skin.image}
+                <View style={[styles.doodleJumpDisplayBar, bars.style]}></View>
+            </View>
         </View>
         <TouchableOpacity style={styles.startButton} onPress={() => setMenuScreen()}>
             <Text style={styles.startButtonText}>BACK TO MENU</Text>

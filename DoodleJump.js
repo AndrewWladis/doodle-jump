@@ -285,30 +285,25 @@ export default function DoodleJump({ setMenuScreen, highScore, setHighScore, ski
                     }]}>
                         {skinImage}
                     </Animated.View>
-                    <View style={[styles.doodleJumpBar, {
+                    <View style={[styles.doodleJumpBar, bars.style, {
                         marginLeft: barPositions[0][0],
-                        marginTop: barPositions[0][1],
-                        backgroundColor: bars
+                        marginTop: barPositions[0][1]
                     }]}></View>
-                    <View style={[styles.doodleJumpBar, {
+                    <View style={[styles.doodleJumpBar, bars.style, {
                         marginLeft: barPositions[1][0],
-                        marginTop: barPositions[1][1],
-                        backgroundColor: bars
+                        marginTop: barPositions[1][1]
                     }]}></View>
-                    <View style={[styles.doodleJumpBar, {
+                    <View style={[styles.doodleJumpBar, bars.style, {
                         marginLeft: barPositions[2][0],
                         marginTop: barPositions[2][1],
-                        backgroundColor: bars
                     }]}></View>
-                    <View style={[styles.doodleJumpBar, {
+                    <View style={[styles.doodleJumpBar, bars.style, {
                         marginLeft: barPositions[3][0],
-                        marginTop: barPositions[3][1],
-                        backgroundColor: bars
+                        marginTop: barPositions[3][1]
                     }]}></View>
-                    <View style={[styles.doodleJumpBar, {
+                    <View style={[styles.doodleJumpBar, bars.style, {
                         marginLeft: barPositions[4][0],
-                        marginTop: barPositions[4][1],
-                        backgroundColor: bars
+                        marginTop: barPositions[4][1]
                     }]}></View>
                 </View>
             </Animated.View>

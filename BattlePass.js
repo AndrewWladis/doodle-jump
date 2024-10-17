@@ -2,6 +2,7 @@ import { View, Text, FlatList, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
 import styles from './styles'
 import levels from './Levels';
+import { skins, barStyles } from './Skins';
 
 export default function BattlePass({ setMenuScreen, highScore }) {
 
@@ -19,6 +20,26 @@ export default function BattlePass({ setMenuScreen, highScore }) {
         )
     }
 
+    const returnImageFromName = (name) => {
+        return (
+            skins[name].image
+        )
+    }
+
+    const returnUnlockableItems = (unlockableItems) => {
+        return (
+            <View style={styles.battlePassUnlockableItems}>
+                {unlockableItems.map((item, index) => (
+                    item.type === "bar" ? (
+                        <View key={index} style={[styles.doodleJumpDisplayBar, barStyles[item.name].style]} />
+                    ) : (
+                        returnImageFromName(item.name)
+                    )
+                ))}
+            </View>
+        )
+    }
+
   return (
     <View style={[styles.doodleJumpScreen, styles.battlePassScreen]}>
       <Text style={[styles.battlePassTitle, { fontFamily: 'Pixel' }]}>Battle Pass</Text>
@@ -31,6 +52,10 @@ export default function BattlePass({ setMenuScreen, highScore }) {
             <View style={styles.battlePassItem} key={item.id}>
                 <Text style={styles.battlePassItemTitle}>Level {item.id}: {item.title} </Text>
                 {returnLoadingBar(item.highScoreRequired, item.id)}
+                <Text style={styles.battlePassUnlockableItemsTitle}>Unlockable items:</Text>
+                <View style={styles.battlePassUnlockableItems}>
+                    {returnUnlockableItems(item.unlockableItems)}
+                </View>
             </View>
         )}
       />
