@@ -3,7 +3,7 @@ import styles from './styles'
 import { PanGestureHandler, State, GestureHandlerRootView } from 'react-native-gesture-handler';
 import { useState, useEffect, useRef } from 'react';
 
-export default function DoodleJump({ setMenuScreen, highScore, setHighScore }) {
+export default function DoodleJump({ setMenuScreen, highScore, setHighScore, skinImage, bars }) {
     const [isGameOver, setIsGameOver] = useState(false);
     const [screenWidth, setScreenWidth] = useState(Dimensions.get('window').width);
     const [screenHeight, setScreenHeight] = useState(Dimensions.get('window').height);
@@ -22,7 +22,7 @@ export default function DoodleJump({ setMenuScreen, highScore, setHighScore }) {
             setIsMovingRight(true);
             let steps = 0;
             const totalSteps = 70;
-            const stepDistance = (screenWidth / 2); // Total distance to move
+            const stepDistance = (screenWidth * .6); // Total distance to move
 
             moveIntervalRef.current = setInterval(() => {
                 if (steps < totalSteps) {
@@ -47,7 +47,7 @@ export default function DoodleJump({ setMenuScreen, highScore, setHighScore }) {
             setIsMovingRight(true);
             let steps = 0;
             const totalSteps = 70;
-            const stepDistance = -(screenWidth / 2); // Total distance to move, negative for left
+            const stepDistance = -(screenWidth * .6); // Total distance to move, negative for left
 
             moveIntervalRef.current = setInterval(() => {
                 if (steps < totalSteps) {
@@ -273,42 +273,46 @@ export default function DoodleJump({ setMenuScreen, highScore, setHighScore }) {
             onGestureEvent={onGestureEvent}
             onHandlerStateChange={onHandlerStateChange}
         >
-            
             <Animated.View style={[styles.doodleJumpScreen, { backgroundColor: backgroundColorInterpolation }]}>
                 <View style={styles.doodleJumpHeader}>
                     <Text style={styles.doodleJumpScore}>SCORE: {score}</Text>
-            </View>
-            <View style={styles.doodleJumpGame}>
-                <View style={[styles.doodleJumpPlayer, {
-                    marginLeft: playerPosition[0],
-                    marginTop: playerPosition[1],
-                    transform: [{ rotate: `${playerRotation}deg` }]
-                }]}>
-                    <Image source={require('./assets/burger.png')} />
                 </View>
-                <View style={[styles.doodleJumpBar, {
-                    marginLeft: barPositions[0][0],
-                    marginTop: barPositions[0][1]
-                }]}></View>
-                <View style={[styles.doodleJumpBar, {
-                    marginLeft: barPositions[1][0],
-                    marginTop: barPositions[1][1]
-                }]}></View>
-                <View style={[styles.doodleJumpBar, {
-                    marginLeft: barPositions[2][0],
-                    marginTop: barPositions[2][1]
-                }]}></View>
-                <View style={[styles.doodleJumpBar, {
-                    marginLeft: barPositions[3][0],
-                    marginTop: barPositions[3][1]
-                }]}></View>
-                <View style={[styles.doodleJumpBar, {
-                    marginLeft: barPositions[4][0],
-                    marginTop: barPositions[4][1]
-                }]}></View>
-            </View>
-                </Animated.View>
-            </PanGestureHandler>
+                <View style={styles.doodleJumpGame}>
+                    <Animated.View style={[styles.doodleJumpPlayer, {
+                        left: playerPosition[0],
+                        top: playerPosition[1],
+                        transform: [{ rotate: `${playerRotation}deg` }],
+                    }]}>
+                        {skinImage}
+                    </Animated.View>
+                    <View style={[styles.doodleJumpBar, {
+                        marginLeft: barPositions[0][0],
+                        marginTop: barPositions[0][1],
+                        backgroundColor: bars
+                    }]}></View>
+                    <View style={[styles.doodleJumpBar, {
+                        marginLeft: barPositions[1][0],
+                        marginTop: barPositions[1][1],
+                        backgroundColor: bars
+                    }]}></View>
+                    <View style={[styles.doodleJumpBar, {
+                        marginLeft: barPositions[2][0],
+                        marginTop: barPositions[2][1],
+                        backgroundColor: bars
+                    }]}></View>
+                    <View style={[styles.doodleJumpBar, {
+                        marginLeft: barPositions[3][0],
+                        marginTop: barPositions[3][1],
+                        backgroundColor: bars
+                    }]}></View>
+                    <View style={[styles.doodleJumpBar, {
+                        marginLeft: barPositions[4][0],
+                        marginTop: barPositions[4][1],
+                        backgroundColor: bars
+                    }]}></View>
+                </View>
+            </Animated.View>
+        </PanGestureHandler>
         </GestureHandlerRootView>
         </>
     );

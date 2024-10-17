@@ -47,7 +47,6 @@ const styles = StyleSheet.create({
   doodleJumpBar: {
     width: 80,
     height: 10,
-    backgroundColor: 'white',
     position: 'absolute',
     borderRadius: 5,
     marginHorizontal: 5
@@ -114,6 +113,16 @@ const styles = StyleSheet.create({
     borderColor: 'white',
     borderWidth: 2
   },
+  lockerPanel: {
+    width: '90%',
+    height: '75%',
+    borderWidth: 3,
+    borderColor: 'white',
+    borderRadius: 15,
+    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
   newHighScoreText: {
     fontSize: 27,
     color: '#f0f0f0',
@@ -131,9 +140,24 @@ const styles = StyleSheet.create({
     padding: 10,
     color: 'white'
   },
+  secondaryButton: {
+    borderRadius: 15,
+    marginVertical: 5,
+    borderColor: 'white',
+    borderWidth: 3,
+    width: '50%',
+    alignItems: 'center'
+  },
+  secondaryButtonText: {
+    fontSize: 22,
+    fontWeight: '700',
+    padding: 7,
+    color: 'white',
+    textAlign: 'center'
+  },
   startButton: {
     borderRadius: 15,
-    marginTop: 20,
+    marginVertical: 20,
     backgroundColor: 'white',
     width: '50%',
     alignItems: 'center'
@@ -172,6 +196,11 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  playerImage: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'contain',
   }
 });
 

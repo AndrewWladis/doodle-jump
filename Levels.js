@@ -10,14 +10,15 @@ const levelsSeason1 = [
 const levelsSeason2 = [
     { id: 1, title: 'New Noob', highScoreRequired: 5 },
     { id: 2, title: 'Squid Games', highScoreRequired: 10 },
-    { id: 3, title: 'Group Leader', highScoreRequired: 20 },
-    { id: 4, title: 'Alpha Attacker', highScoreRequired: 30 },
-    { id: 5, title: 'Sneaky Sigma', highScoreRequired: 40 },
-    { id: 6, title: 'The "Rick" Friend', highScoreRequired: 45 },
-    { id: 7, title: 'The Basher', highScoreRequired: 50 },
-    { id: 8, title: 'Hacker Herobrine', highScoreRequired: 55 },
-    { id: 9, title: 'My Glorious King LeBonBon', highScoreRequired: 65 },
-    { id: 10, title: 'Dr. Micheal Morbius', highScoreRequired: 80 },
+    { id: 3, title: 'Imposter Among Us', highScoreRequired: 15 },
+    { id: 4, title: 'Group Leader', highScoreRequired: 20 },
+    { id: 5, title: 'Alpha Attacker', highScoreRequired: 30 },
+    { id: 6, title: 'Sneaky Sigma', highScoreRequired: 40 },
+    { id: 7, title: 'The "Rick" Friend', highScoreRequired: 45 },
+    { id: 8, title: 'The Basher', highScoreRequired: 50 },
+    { id: 9, title: 'Hacker Herobrine', highScoreRequired: 55 },
+    { id: 10, title: 'My Glorious King LeBonBon', highScoreRequired: 65 },
+    { id: 11, title: 'Dr. Micheal Morbius', highScoreRequired: 80 },
 
 ]
 

@@ -5,11 +5,15 @@ import { useState, useEffect, useRef } from 'react';
 import { useFonts } from 'expo-font';
 import DoodleJump from './DoodleJump';
 import BattlePass from './BattlePass';
+import Locker from './Locker';
+import { skins } from './Skins'
 import styles from './styles';
 
 export default function App() {
   const [screen, setScreen] = useState('Home');
+  const [skin, setSkin] = useState(skins["burger"])
   const [highScore, setHighScore] = useState(0);
+  const [bars, setBars] = useState("white");
   const animationRef = useRef(new Animated.Value(0));
 
   useFonts({
@@ -60,7 +64,40 @@ export default function App() {
       }
     };
 
+    const getSkin = async () => {
+      const key = 'skin';
+      
+      try {
+        const value = await AsyncStorage.getItem(key);
+        if (value !== null && skins[value]) {
+          setSkin(skins[value]);
+        } else {
+          setSkin(skins["burger"])
+          await AsyncStorage.setItem(key, 'burger'); // Store as string
+        }
+      } catch (e) {
+        console.error('Failed to fetch the data from storage', e);
+      }
+    };
+
+    const getBars = async () => {
+      const key = 'bars';
+      
+      try {
+        const value = await AsyncStorage.getItem(key);
+        if (value !== null) {
+          setBars(value);
+        } else {
+          setBars("white")
+          await AsyncStorage.setItem(key, 'white'); // Store as string
+        }
+      } catch (e) {
+        console.error('Failed to fetch the data from storage', e);
+      }
+    };
+
     getHighScore();
+    getSkin();
   }, []);
 
   useEffect(() => {
@@ -73,9 +110,11 @@ export default function App() {
 
   const renderScreen = () => {
     if (screen === 'BurgerJump') {
-      return <DoodleJump setMenuScreen={() => setScreen('Home')} highScore={highScore} setHighScore={setHighScore}/>;
+      return <DoodleJump setMenuScreen={() => setScreen('Home')} highScore={highScore} setHighScore={setHighScore} skinImage={skin.image} bars={bars} />;
     } else if (screen === 'BattlePass') {
       return <BattlePass setMenuScreen={() => setScreen('Home')} highScore={highScore}/>;
+    } else if (screen === 'Locker') {
+      return <Locker setMenuScreen={() => setScreen('Home')} highScore={highScore} setSkin={setSkin} skin={skin} />;
     } else {
       return (
         <View style={[styles.doodleJumpScreen, styles.homeScreen]}>
@@ -90,8 +129,11 @@ export default function App() {
           <TouchableOpacity style={styles.startButton} onPress={() => setScreen('BurgerJump')}>
             <Text style={styles.startButtonText}>PLAY</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.startButton} onPress={() => setScreen('BattlePass')}>
-            <Text style={styles.startButtonText}>BATTLE PASS</Text>
+          <TouchableOpacity style={styles.secondaryButton} onPress={() => setScreen('BattlePass')}>
+            <Text style={styles.secondaryButtonText}>BATTLE PASS</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.secondaryButton} onPress={() => setScreen('Locker')}>
+            <Text style={styles.secondaryButtonText}>LOCKER</Text>
           </TouchableOpacity>
           <StatusBar style='dark' /> 
         </View>
