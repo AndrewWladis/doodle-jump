@@ -172,6 +172,7 @@ export default function DoodleJump({ setMenuScreen, highScore, setHighScore, ski
         if (playerPosition[1] >= (screenHeight * .88)) {
             if (score > highScore) {
                 setHighScore(score);
+                
             }
             setIsGameOver(true);
         }

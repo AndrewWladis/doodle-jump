@@ -227,6 +227,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
+  unlockButton: {
+    width: '85%',
+    backgroundColor: '#f0f0f0',
+    borderRadius: 15,
+    marginVertical: 10
+  },
+  unlockButtonText: {
+    textAlign: 'center',
+    color: '#76caf5',
+    fontSize: 20,
+    fontWeight: '800',
+    padding: 8
+  },
   playerImage: {
     width: '100%',
     height: '100%',

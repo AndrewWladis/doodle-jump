@@ -37,9 +37,24 @@ const levelsSeason1 = [
 
 // Season 2: TikTok Rizz Party
 const levelsSeason2 = [
-    { id: 1, title: 'New Noob', highScoreRequired: 5 },
-    { id: 2, title: 'Squid Games', highScoreRequired: 10 },
-    { id: 3, title: 'Imposter Among Us', highScoreRequired: 15 },
+    { 
+        id: 1, 
+        title: 'New Noob', 
+        highScoreRequired: 5,
+        unlockableItems: []
+    },
+    { 
+        id: 2, 
+        title: 'Squid Games', 
+        highScoreRequired: 10,
+        unlockableItems: [] 
+    },
+    { 
+        id: 3, 
+        title: 'Imposter Among Us', 
+        highScoreRequired: 15,
+        unlockableItems: []
+    },
     { id: 4, title: 'Group Leader', highScoreRequired: 20 },
     { id: 5, title: 'Alpha Attacker', highScoreRequired: 30 },
     { id: 6, title: 'Sneaky Sigma', highScoreRequired: 40 },
