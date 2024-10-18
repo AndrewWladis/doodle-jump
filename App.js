@@ -13,7 +13,6 @@ export default function App() {
   const [screen, setScreen] = useState('Home');
   const [skin, setSkin] = useState(skins["burger"])
   const [highScore, setHighScore] = useState(0);
-  const [locker, setLocker] = useState([]);
   const [bars, setBars] = useState("white");
   const animationRef = useRef(new Animated.Value(0));
 
@@ -97,28 +96,9 @@ export default function App() {
       }
     };
 
-    const getLocker = async () => {
-      const key = 'locker';
-      
-      try {
-        const value = await AsyncStorage.getItem(key);
-        if (value !== null) {
-          value.split(',').map((val) => {
-            setLocker(prevLocker => [...prevLocker, skins[val]])
-          })
-        } else {
-          setLocker([skins["burger"]])
-          await AsyncStorage.setItem(key, 'burger,white'); // Store as string
-        }
-      } catch (e) {
-        console.error('Failed to fetch the data from storage', e);
-      }
-    };
-
     getHighScore();
     getSkin();
     getBars();
-    getLocker();
   }, []);
 
   useEffect(() => {
@@ -129,27 +109,13 @@ export default function App() {
     setHighScoreToStorage();
   }, [highScore]);
 
-  useEffect(() => {
-    const setLockerToStorage = async () => {
-      // Convert locker array to a Set to ensure unique items
-      const uniqueLockerItems = new Set(locker.map(item => item.name));
-      // Convert Set back to an array and join with commas
-      const lockerString = Array.from(uniqueLockerItems).join(',');
-      await AsyncStorage.setItem('locker', lockerString);
-    };
-
-    if (locker.length > 0) {
-      setLockerToStorage();
-    }
-  }, [locker])
-
   const renderScreen = () => {
     if (screen === 'BurgerJump') {
       return <DoodleJump setMenuScreen={() => setScreen('Home')} highScore={highScore} setHighScore={setHighScore} skinImage={skin.image} bars={bars} />;
     } else if (screen === 'BattlePass') {
-      return <BattlePass setMenuScreen={() => setScreen('Home')} highScore={highScore} locker={locker} setLocker={setLocker} />;
+      return <BattlePass setMenuScreen={() => setScreen('Home')} highScore={highScore} />;
     } else if (screen === 'Locker') {
-      return <LockerRoom setMenuScreen={() => setScreen('Home')} highScore={highScore} setSkin={setSkin} skin={skin} bars={bars} locker={locker} setLocker={setLocker} />;
+      return <LockerRoom setMenuScreen={() => setScreen('Home')} highScore={highScore} setSkin={setSkin} skin={skin} bars={bars} setBars={setBars} />;
     } else {
       return (
         <View style={[styles.doodleJumpScreen, styles.homeScreen]}>

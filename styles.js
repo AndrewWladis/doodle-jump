@@ -144,6 +144,28 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     borderRadius: 15,
   },
+  lockerItem: {
+    borderBottomColor: 'white',
+    borderBottom: 3,
+    backgroundColor: 'rgba(0, 0, 0, 0.2)',
+    padding: 10,
+    marginVertical: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+    borderRadius: 15,
+  },
+  lockerList: {
+    width: '50%',
+    height: '100%',
+    margin: 10
+  },
+  lockerLists: {
+    flexDirection: 'row',
+    width: '100%',
+    height: '100%',
+    justifyContent: 'space-evenly'
+  },
   lockerPanel: {
     width: '90%',
     height: '75%',
@@ -152,6 +174,13 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     backgroundColor: 'rgba(0, 0, 0, 0.2)',
     alignItems: 'center'
+  },
+  lockerTitle: {
+    fontSize: 20,
+    color: '#f0f0f0',
+    margin: 10,
+    textAlign: 'center',
+    fontWeight: '700'
   },
   newHighScoreText: {
     fontSize: 27,

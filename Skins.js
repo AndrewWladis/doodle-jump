@@ -26,6 +26,18 @@ const barStyles = {
             borderWidth: 2,
             borderColor: 'white'
         }
+    },
+    "red": {
+        introduced: 'Season 1',
+        style: {
+            backgroundColor: '#e63946'
+        }
+    },
+    "green": {
+        introduced: 'Season 1',
+        style: {
+            backgroundColor: '#4a7a41'
+        }
     }
 }
 
