@@ -125,7 +125,7 @@ export default function App() {
               { fontFamily: 'Pixel', marginBottom, marginTop }
             ]}
           >
-            {`Get\nHigh`}
+            {`Skybound\nSprinter`}
           </Animated.Text>
           <TouchableOpacity style={styles.startButton} onPress={() => setScreen('BurgerJump')}>
             <Text style={styles.startButtonText}>PLAY</Text>

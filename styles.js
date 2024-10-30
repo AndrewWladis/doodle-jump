@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   homeScreenTitle: {
-    fontSize: 70,
+    fontSize: 40,
     fontWeight: '700',
     color: '#f0f0f0',
     textAlign: 'center'

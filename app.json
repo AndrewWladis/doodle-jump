@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "Get High",
+    "name": "Skybound Sprinter",
     "slug": "arcade",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./assets/app.png",
     "userInterfaceStyle": "light",
