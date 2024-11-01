@@ -17,6 +17,10 @@ export default function DoodleJump({ setMenuScreen, highScore, setHighScore, ski
     const translateX = useRef(new Animated.Value(0)).current;
     const moveIntervalRef = useRef(null);
 
+    function returnBarStyle() {
+        return bars?.style || { backgroundColor: 'white' };
+    }
+
     function startMovingRight() {
         if (!isMovingRight) {
             setIsMovingRight(true);
@@ -286,23 +290,23 @@ export default function DoodleJump({ setMenuScreen, highScore, setHighScore, ski
                     }]}>
                         {skinImage}
                     </Animated.View>
-                    <View style={[styles.doodleJumpBar, bars.style, {
+                    <View style={[styles.doodleJumpBar, returnBarStyle(), {
                         marginLeft: barPositions[0][0],
                         marginTop: barPositions[0][1]
                     }]}></View>
-                    <View style={[styles.doodleJumpBar, bars.style, {
+                    <View style={[styles.doodleJumpBar, returnBarStyle(), {
                         marginLeft: barPositions[1][0],
                         marginTop: barPositions[1][1]
                     }]}></View>
-                    <View style={[styles.doodleJumpBar, bars.style, {
+                    <View style={[styles.doodleJumpBar, returnBarStyle(), {
                         marginLeft: barPositions[2][0],
                         marginTop: barPositions[2][1],
                     }]}></View>
-                    <View style={[styles.doodleJumpBar, bars.style, {
+                    <View style={[styles.doodleJumpBar, returnBarStyle(), {
                         marginLeft: barPositions[3][0],
                         marginTop: barPositions[3][1]
                     }]}></View>
-                    <View style={[styles.doodleJumpBar, bars.style, {
+                    <View style={[styles.doodleJumpBar, returnBarStyle(), {
                         marginLeft: barPositions[4][0],
                         marginTop: barPositions[4][1]
                     }]}></View>

@@ -85,7 +85,7 @@ export default function App() {
       
       try {
         const value = await AsyncStorage.getItem(key);
-        if (value !== null) {
+        if (value !== null && !barStyles[value]) {
           setBars(barStyles['white']);
         } else {
           setBars(barStyles[value])
